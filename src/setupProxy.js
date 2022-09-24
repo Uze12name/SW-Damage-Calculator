@@ -1,8 +1,9 @@
-import { createProxyMiddleware } from 'http-proxy-middleware';
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-export default app => {
-    app.use ('/api/v2',
-        createProxyMiddleware( {
+module.exports = app => {
+    app.use (
+        createProxyMiddleware('/api/v2',
+        {
             target: 'https://swarfarm.com/',
             changeOrigin: true
         })
