@@ -1,0 +1,43 @@
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+// import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+// import Menu from '@mui/material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+// import Avatar from '@mui/material/Avatar';
+// import Tooltip from '@mui/material/Tooltip';
+// import MenuItem from '@mui/material/MenuItem';
+// import AdbIcon from '@mui/icons-material/Adb';
+import Buildings from './Buildings'
+import Flags from './Flags'
+import HowTo from './HowTo'
+
+export default function NavBar () {
+
+  return (
+    <AppBar position="static" sx={{backgroundColor:'grey.900'}}>
+      {/* <Container maxWidth='lg' sx={{}}> */}
+      <Container maxWidth='100%' sx={{}}>
+        <Toolbar disableGutters sx={{'@media (min-width: 600px)':{minHeight:50}, }}>
+          {/* <AdbIcon sx={{ display:'flex', mr:1}} /> */}
+          <Box component='img' src='/logo.png' sx={{ width:40, height:40, mr:2}} />
+          <Typography sx={{fontSize:20, fontWeight:600, display:'inline-block', }}>SW Damage Calculator</Typography>
+
+          <Box sx={{flexGrow: 1, display:'flex', justifyContent:'center', gap:1, }}>
+            <Buildings/>
+            <Flags/>
+          </Box>
+          
+          <HowTo/>
+            {/* <Button sx={{color:'white', ':hover':{color:'primary.main'}}}>
+              <HelpCenterOutlinedIcon fontSize='large' />
+            </Button> */}
+
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
+  
