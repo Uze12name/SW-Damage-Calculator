@@ -42,7 +42,7 @@ export default function HPnDEFCal() {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl)
-  const id = open ? 'simple-popover' : undefined
+  // const id = open ? 'simple-popover' : undefined
   const [input, setInput] = useState({
     baseHP: '',
     baseDEF: '',
@@ -162,5 +162,5 @@ export default function HPnDEFCal() {
         </Box>
       </Popover>
     </Box>
-  );
+  )
 }

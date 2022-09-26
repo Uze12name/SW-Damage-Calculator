@@ -23,9 +23,8 @@ export default function MonsList () {
       // const index = mons.index ?? null
       // console.log('[MonsList]: ', mons);
       dispatch(getMonsInfo({name, index}))
-
     }
-  }, [mons])
+  }, [mons, dispatch])
 
   return (
     <Box sx={{mb:2}}>

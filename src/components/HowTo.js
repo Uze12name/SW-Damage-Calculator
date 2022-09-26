@@ -18,11 +18,7 @@ const style = {
 }
 
 export default function HowTo () {
-  const [open, setOpen] = useState(false);
-
-  if (!open) {
-
-  }
+  const [open, setOpen] = useState(false)
 
   return (
     <Box>
@@ -57,7 +53,7 @@ export default function HowTo () {
             - Masha gain [ 18.45 ] (15%) per stack {`=>`} 18.45, 36.9, 55.35, 73.8 and [ 92.25 ] (max 5 stacks)<br/>
             - Narsha gain [ 21.6 ] (20%) per stack {`=>`} 21.6, 43.2, 64.8, 86.4 and [ 108 ] (max 5 stacks)<br/>
             - Miles gain [ 5.25 ] (5%) per stack {`=>`} 21 at 4 stacks, 36.75 at 7 stacks<br/>
-            - Mei Hou Wang gain [ 5.8 ] (5%) per stack, [ 58 ] at 10 stacks (max)<br/>
+            - Mei Hou Wang gain [ 11.6 ] (10%) per stack, [58] at 5 stacks, [ 116 ] at 10 stacks (max)<br/>
           </Typography>
 
         </Box>

@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getMonsInfo = createAsyncThunk('getMonsInfo', async({name, index}) => {
-  const rootUrl = process.env.NODE_ENV === "production" ? "https://swarfarm.com" : ""
-  const url = `${rootUrl}/api/v2/monsters/?name=${name}`
+  // const url = `/api/v2/monsters/?name=${name}`
+  // const url = `http://localhost:8888/.netlify/functions/cors/https://swarfarm.com/api/v2/monsters/?name=${name}`
+  const url = `https://swdmgcalc2swarfarmapi.netlify.app/.netlify/functions/cors/https://swarfarm.com/api/v2/monsters/?name=${name}`
   const res = await axios.get(url)
   return [res.data, index]
 })

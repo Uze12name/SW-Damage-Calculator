@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getSkillInfo = createAsyncThunk('getSkillInfo', async({id, index}) => {
-  const rootUrl = process.env.NODE_ENV === "production" ? "https://swarfarm.com" : ""
-  const url = `${rootUrl}/api/v2/skills/${id}`
+  // const url = `/api/v2/skills/${id}`
+  const url = `https://swdmgcalc2swarfarmapi.netlify.app/.netlify/functions/cors/https://swarfarm.com/api/v2/skills/${id}`
   const res = await axios.get(url)
   return [res.data, index]
 })
