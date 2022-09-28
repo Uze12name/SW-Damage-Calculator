@@ -10,12 +10,12 @@ export default function Profile () {
   // const error = useSelector(state => state.monsInfo.error)
 
   return (
-    <Box sx={{mb:2}}>
+    <Box sx={{}}>
       <Grid container>
         <Grid>
           <Box sx={{width:102, height:102, border:'1px dotted white', mr:1, textAlign:'center'}}>
             {/* <img src='https://swarfarm.com/static/herders/images/monsters/unit_icon_0080_1_3.png'/> */}
-            {!pending && <Box component="img" sx={{}} src={monsInfo.image}/>}
+            {!pending && <Box component="img" sx={{}} src={monsInfo.image ?? '/images/Silhouette_mon.png'}/>}
             {pending && <CircularProgress sx={{mt:'30px'}} />}
           </Box>
         </Grid>
@@ -31,7 +31,7 @@ export default function Profile () {
           <Typography component='span' sx={{fontSize:'16px'}}>{monsInfo.type}</Typography>
         </Grid>
         
-        <Grid xs={5} xsOffset='auto' sx={{pt:1}}>
+        <Grid xs={12} lg={5} xsOffset='auto' sx={{pt:1}}>
           <Typography component='span' sx={{fontSize:'17px', fontWeight:500}}>Leader skill </Typography>
           <br/>
           {!monsInfo.leader_skill && <Typography sx={{fontSize:'16px'}}>None</Typography>}

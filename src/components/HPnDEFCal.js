@@ -7,36 +7,43 @@ import Typography from '@mui/material/Typography';
 import CalculateSharpIcon from '@mui/icons-material/CalculateSharp';
 import { useEffect, useState } from 'react';
 
-const statSX = {
-  width: 120,
-  mr:1,
-}
-const leadSX = {
-  width: 90,
-
-}
-const textSX = {
-  verticalAlign:'bottom',
-  mb:'8px',
-  mx:'8px',
-  display:'inline-block',
+const firstColumn = {
+  // display: 'block',
+  height: 50,
+  pt: 1,
+  textAlign: 'right',
 }
 const headerSX = {
-  display:'inline-block',
+  display:'block',
+  height: 30,
+  width: 120,
   fontSize:18,
   fontWeight:400,
-  mb:1,
 }
-const resultSX = {
-  fontSize:18,
-  fontWeight:400,
+const inputSX = {
+  display: 'block',
+  height: 50,
+  width: 120,
+  mx: 1,
+}
+const resultTextSX = {
+  display: 'block',
+  height: 45,
+  mt: 1,
+  textAlign: 'right',
+  fontSize: 18,
+  fontWeight: 400,
+  textDecoration: 'underline', 
 }
 const resultNumberSX = {
-  fontSize:20,
-  fontWeight:400,
+  display: 'block',
+  height: 45,
+  width: 120,
+  mt: 1,
+  fontSize: 20,
+  fontWeight: 400,
   color:'success.main',
 }
-
 
 export default function HPnDEFCal() {
 
@@ -109,56 +116,38 @@ export default function HPnDEFCal() {
           horizontal: 'right',
         }}
       >
-        <Box sx={{bgcolor:'grey.800', p:4}}>
+        <Box sx={{bgcolor:'grey.800', p:1, width:345}}>
           <Typography variant='h6' sx={{}}>Combat HP / DEF calculation</Typography>
           <Typography sx={{fontSize:12, mb:3, ml:2}}>(Assuming max bulidings and flags)</Typography>
-          <Box>
-          <Typography sx={[headerSX, {ml:12}]}>Base</Typography>
-          <Typography sx={[headerSX, {ml:11}]}>Rune</Typography>
-          <Typography sx={[headerSX, {ml:6}]}>Leader skill</Typography>
-          </Box>
-          <Box sx={{mb:1}}>
-              <Typography component='span' sx={[textSX, {ml:2}]}>HP : </Typography>
-              <TextField name='baseHP' value={input.baseHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={statSX}/>
-              <TextField name='runeHP' value={input.runeHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={statSX}/>
-              <TextField name='leadHP' value={input.leadHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={leadSX}/>
-              <Typography component='span' sx={textSX}>%</Typography>
-          </Box>
-          <Box sx={{mb:2}}>
-              <Typography component='span' sx={textSX}>DEF : </Typography>
-              <TextField name='baseDEF' value={input.baseDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={statSX}/>
-              <TextField name='runeDEF' value={input.runeDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={statSX}/>
-              <TextField name='leadDEF' value={input.leadDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={leadSX}/>
-              <Typography component='span' sx={textSX}>%</Typography>
-          </Box>
-          <hr/>
-          {/* <Box sx={{mt:1, mb:1, float:'right', width:200}}> */}
-          {/* </Box> */}
-          <Grid container spacing={1} sx={{mt:1}}>
-            <Grid xs={6} sx={{borderRight:1}}>
-              <Typography textAlign='center' sx={{fontSize:20, fontWeight:500, mb:1}}>Arena</Typography>
-              <Box >
-                <Typography component='span' sx={resultSX}>Combat HP : </Typography>
+
+          <Grid container>
+            <Grid sx={{}} xs={2}>
+              <Typography sx={headerSX}></Typography>
+              <Typography sx={firstColumn}>Base : </Typography>
+              <Typography sx={firstColumn}>Rune : </Typography>
+              <Typography sx={firstColumn}>Lead : </Typography>
+              <Typography sx={resultTextSX}>Arena</Typography>
+              <Typography sx={resultTextSX}>Guild</Typography>
+            </Grid>
+            <Grid sx={{textAlign:'center', borderRight:1}} xs={5}>
+                <Typography component='span' sx={headerSX}>HP</Typography>
+                <TextField name='baseHP' value={input.baseHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
+                <TextField name='runeHP' value={input.runeHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
+                <TextField name='leadHP' value={input.leadHP} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
                 <Typography component='span' sx={resultNumberSX}>{result.arenaHP.toLocaleString()}</Typography>
-              </Box>
-              <Box>
-                <Typography component='span' sx={resultSX}>Combat DEF : </Typography>
-                <Typography component='span' sx={resultNumberSX}>{result.arenaDEF.toLocaleString()}</Typography>
-              </Box>
-            </Grid>
-            <Grid xs={6}>
-              <Typography textAlign='center' sx={{fontSize:20, fontWeight:500, mb:1}}>Guild</Typography>
-              <Box textAlign='center'>
-                <Typography component='span' sx={resultSX}>Combat HP : </Typography>
                 <Typography component='span' sx={resultNumberSX}>{result.guildHP.toLocaleString()}</Typography>
-              </Box>
-              <Box textAlign='center'>
-                <Typography component='span' sx={resultSX}>Combat DEF : </Typography>
-                <Typography component='span' sx={resultNumberSX}>{result.guildDEF.toLocaleString()}</Typography>
-              </Box>
             </Grid>
-          </Grid>
-          
+
+            <Grid sx={{textAlign:'center'}} xs={5}>
+                <Typography component='span' sx={headerSX}>DEF</Typography>
+                <TextField name='baseDEF' value={input.baseDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
+                <TextField name='runeDEF' value={input.runeDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
+                <TextField name='leadDEF' value={input.leadDEF} onChange={handleInput} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={inputSX}/>
+                <Typography component='span' sx={resultNumberSX}>{result.arenaDEF.toLocaleString()}</Typography>
+                <Typography component='span' sx={resultNumberSX}>{result.guildDEF.toLocaleString()}</Typography>
+            </Grid>
+          </Grid>  
+
         </Box>
       </Popover>
     </Box>

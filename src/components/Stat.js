@@ -197,7 +197,8 @@ export default function Stat () {
 
   return (
     <Box sx={{mb:2}}>
-      <TableContainer sx={{mx:'auto', width:'430px', border:'1px solid lightgray'}}>
+      {/* <TableContainer sx={{mx:'auto', width:'430px', border:'1px solid lightgray'}}> */}
+      <TableContainer sx={{width:430, border:'1px solid lightgray'}}>
         <LeaderSkill onSetLeader={onSetLeader} type={leader.type} />
         <form>
           {/* <Table sx={{bgcolor:'grey.900'}} aria-label="simple table" size='small'> */}
@@ -217,7 +218,7 @@ export default function Stat () {
                 <TableCell sx={firstColumn}>HP</TableCell>
                 <TableCell sx={tableCell}>{base.hp}</TableCell>
                 <TableCell sx={{margin:0, padding: 0}}>
-                  <TextField name='hp' onChange={onRuneChange} value={rune.hp} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{marginBottom:'2px'}} inputProps={{step:1000, min:0, max:99999}}/>
+                  <TextField name='hp' onChange={onRuneChange} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px'}} inputProps={{step:1000, min:0}}/>
                 </TableCell>
                 <TableCell sx={tableCell}>{arena.hp}</TableCell>
                 <TableCell sx={tableCell}>{guild.hp}</TableCell>

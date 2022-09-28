@@ -14,33 +14,35 @@ import SkillInfo from './components/SkillInfo'
 import MonsList from './components/MonsList'
 
 const gridContainer = {
-  display:'grid',
-  gridTemplateColumns:'auto auto',
-  gap:'8px',
+  display: 'grid',
+  // gridTemplateColumns: 'auto auto',
+  gridTemplateColumns: {xs: 'auto', md: 'auto', lg: 'auto auto'},
+  gap: {lg:'15px', xs:'10px'},
   position: 'relative',
   mt:2,
-  overflow: 'auto',
 }
 const mainContentSX = {
-  bgcolor:'rgb(45 45 45)',
-  p:'15px',
+  bgcolor: 'rgb(45 45 45)',
+  // bgcolor:'rgb(80 80 80)',
+  px: {xs:'1px', sm:'15px'},
 }
 const monstList = {
-  // ml:1,
-  height:'50px',
-  '@media (max-width: 1199px)':{gridArea:'1 / 1 / 1 / 3'},
+  '@media (max-width: 1199px)':{gridArea:'1 / 1 / 1 / 1'},
   // '@media only screen and (max-width: 1199px)':{gridArea:'1 / 1 / 1 / 3'},
+  // border: '1px dashed green',
 }
 const stats = {
-  gridArea:'1 / 1 / span 2 / 1',
-  '@media (max-width: 1199px)':{gridArea:'2 / 1 / 2 / 3'},
+  gridArea: '1 / 1 / span 2 / 1',
+  '@media (max-width: 1199px)':{gridArea:'2 / 1 / 2 / 2'},
   // '@media only screen and (max-width: 1199px)':{gridArea:'2 / 1 / 2 / 3'},
-  // mr:3,
+  overflow: 'auto',
+  // zoom: '85%',
+  // border: '1px dashed green',
 }
 const result = {
-  '@media (max-width: 1199px)':{gridArea:'3 / 1 / 3 / 3'},
+  '@media (max-width: 1199px)':{gridArea:'3 / 1 / 3 / 1'},
   // '@media only screen and (max-width: 1199px)':{gridArea:'3 / 1 / 3 / 3'},
-  // ml:1,
+  // border: '1px dashed green',
 }
 const bgImage = {
   opacity: 0.06,
@@ -78,7 +80,7 @@ const darkTheme = createTheme({
   //     },
   //   },
   // },
-});
+})
 
 function App() {
 
@@ -92,31 +94,28 @@ function App() {
             <Box component='img' src='/images/bg2.jpg' sx={bgImage2}/>
 
             <Box sx={gridContainer}>
-              <Box sx={monstList}>
-                <Box display='flex' justifyContent={{lg:'left', xs:'center'}} >
-                  <Box width={{lg:'630px', xs:'480px'}} sx={mainContentSX}>
-                    <MonsList/>
-                  </Box>
+              <Box display='flex' justifyContent={{lg:'left', sm:'center', xs:'left'}} gap='1' sx={monstList}>
+                <Box width={{lg:630, sm:460, xs:1}} maxWidth={{lg:630, sm:460, xs:432}} sx={mainContentSX}>
+                  <MonsList/>
+                  <Profile/>
                 </Box>
               </Box>
-              <Box sx={stats}>
-                <Box display='flex' justifyContent={{lg:'right', xs:'center'}}>
-                  <Box width='480px' sx={mainContentSX}>
+
+              <Box display='flex' justifyContent={{lg:'right', sm:'center', xs:'left'}} sx={stats} >
+                <Box sx={mainContentSX}>
                     <Stat/>
                     <Artifact/>
-                  </Box>
                 </Box>
               </Box>
-              <Box sx={result}>
-                <Box display='flex' justifyContent={{lg:'left', xs:'center'}}>
-                  <Box width='630px' sx={mainContentSX}>
-                    <Profile/>
-                    <Effect/>
-                    <Damage/>
-                  </Box>
+
+              <Box display='flex' justifyContent={{lg:'left', sm:'center', xs:'left'}}  sx={result}>
+                <Box width={{sm:630}} sx={mainContentSX}>
+                  <Effect />
+                  <Damage/>
                 </Box>
               </Box>
             </Box>
+
             <SkillInfo/>
 
             <Box component='footer' sx={{py:2, bgcolor:'grey.900'}}>

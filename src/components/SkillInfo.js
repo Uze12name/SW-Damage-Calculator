@@ -14,13 +14,13 @@ export default function SkillInfo () {
   const skills = useSelector(state => state.monsInfo.info.skills)
   const skillInfo = useSelector(state => state.skillInfo.skills)
   const dispatch = useDispatch()
-  const [skillAmount, setSkillAmount] = useState(3)
+  const [lg, setLg] = useState(3)
 
   useEffect( ()=>{
     // console.log('[SkillInfo]-useEffect');
     if (skills) {
       dispatch(clearSkillInfo())
-      setSkillAmount(12/skills.length)
+      setLg(12/skills.length)
       skills.forEach((id, index) => dispatch(getSkillInfo({id, index})))
     }
     //eslint-disable-next-line
@@ -34,7 +34,8 @@ export default function SkillInfo () {
         <br/>
         <Grid container spacing={2}>
           {skillInfo.map((info, index) => (
-            <Grid xs={skillAmount} key={index}>
+            // <Grid xs={skillAmount} key={index}>
+            <Grid key={index} sm={12} md={6} lg={lg} sx={{mb:3}}>
               {/* <Box component="img" sx={{width:50, height:50, mr:1, float:'left', }} src={skill_icon_0019_9_8}/> */}
               <Box component="img" sx={{width:50, height:50, mr:1, float:'left', }} src={info.icon}/>
               <Typography sx={{fontWeight:600, display:'inline'}}>{info.name}</Typography>

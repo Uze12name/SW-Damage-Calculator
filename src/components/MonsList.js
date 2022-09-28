@@ -27,7 +27,7 @@ export default function MonsList () {
   }, [mons, dispatch])
 
   return (
-    <Box sx={{mb:2}}>
+    <Box sx={{mb:1}}>
       <Autocomplete
         clearOnEscape
         blurOnSelect

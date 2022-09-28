@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
 import { useEffect, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { select_Skill } from '../redux/skillSlice'
@@ -23,9 +24,9 @@ function SelectSkill () {
   }, [skills])
 
   return (
-    <>
+    <Box>
       <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'9px', mx:'8px', display:'inline-block'}}>Skill:</Typography>
-        <FormControl color='primary' sx={{width:290}} size='small' variant="filled" hiddenLabel>
+        <FormControl color='primary' sx={{width:0.83}} size='small' variant="filled" hiddenLabel>
           {/* <InputLabel >Select Skill</InputLabel> */}
           <Select value={selectedSkill} onChange={handleSelectedSkill} defaultValue={99}>
             <MenuItem  value={99}><Typography sx={{color:'grey.400'}}>Select Skill</Typography></MenuItem>
@@ -35,7 +36,7 @@ function SelectSkill () {
             ))}
           </Select>
         </FormControl>
-    </>
+    </Box>
   )
 }
 export default memo(SelectSkill)

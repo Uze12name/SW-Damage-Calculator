@@ -1,31 +1,33 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 
 const style = {
   position: 'absolute',
-  top: '10%',
-  left: '50%',
-  transform: 'translate(-50%, -10%)',
+  top: {sm:'10%'},
+  left: {sm:'50%'},
+  transform: {sm:'translate(-50%, -10%)'},
   // width: 300,
   bgcolor: 'grey.900',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 3,
+  width: 0.85,
 }
 
 export default function HowTo () {
   const [open, setOpen] = useState(false)
 
   return (
-    <Box>
-      <Button onClick={()=>setOpen(true)} sx={{color:'white', ':hover':{color:'primary.main'}}}>
+    <Box >
+      <IconButton onClick={()=>setOpen(true)} sx={{color:'white', ':hover':{color:'primary.main'}}}>
           <HelpCenterOutlinedIcon fontSize='large' />
-      </Button>
-      <Modal open={open} onClose={()=>setOpen(false)}>
+      </IconButton>
+      <Modal open={open} onClose={()=>setOpen(false)} sx={{overflow:'auto'}}>
         <Box sx={style}>
           <Typography variant="h6" sx={{mb:2, color:'grey.200'}}>
             Explaination...

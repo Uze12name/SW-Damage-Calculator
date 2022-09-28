@@ -36,9 +36,9 @@ export default function Effect () {
   }
 
   return (
-    // <Box align='center' border='1px solid skyblue'>
-    <Box align='center' sx={{mb:1}}>
-      
+    <Box align='center'>
+    {/* <Box sx={{mb:1, textAlign:{sm:'center', xs:'left'}}}> */}
+
       <ToggleButtonGroup
       // <StyledToggleButtonGroup
         color="primary"
@@ -81,7 +81,7 @@ export default function Effect () {
           Fixed
         </ToggleButton>
       </ToggleButtonGroup>
-    <hr/>
+      <hr/>
     </Box>
   )
 }

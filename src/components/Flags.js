@@ -48,7 +48,7 @@ export default function Flags() {
   return (
     <Box>
       <Button onClick={()=>setOpen(true)} sx={{color:'white', ':hover':{color:'primary.main'}}} size='large'>Flags</Button>
-      <Modal open={open} onClose={()=>setOpen(false)}>
+      <Modal open={open} onClose={()=>setOpen(false)} sx={{overflow:'auto'}}>
         <Box sx={style}>
           <Typography variant="h6" sx={{mb:2}}>
             Flags Level

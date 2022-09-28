@@ -10,9 +10,18 @@ import { useSelector } from 'react-redux';
 import SelectSkill from './SelectSkill'
 import HPnDEFCal from './HPnDEFCal'
 
+const flexContainer = {
+  display: 'flex',
+  flexDirection: {xs:'column', sm:'row'},
+  // mb:1,
+}
 const mltplrStyle = {
   marginBottom:'2px',
   width:'120px',
+}
+const mltplrStyle2 = {
+  marginBottom:'2px',
+  width:'80%',
 }
 const sx_ResultText = {
   fontSize:18,
@@ -197,123 +206,122 @@ export default function Damage () {
 
 
   return (
-    <>
-      {/* <Box sx={{border: '1px solid white'}} > */}
-      <Box sx={{mb:2}} >
-        <Grid container sx={{alignItems:'flex-end'}}>
-          <Grid xs={7}>
-            <SelectSkill />
-          </Grid>
-          {/* <Grid xs={5} xsOffset='auto'> */}
-          <Grid xs={5} xsOffset='auto' sx={{position:'relative'}} >
+    <Box>
+      <Box sx={[flexContainer, {mb:1}]} >
+        <Box sx={{mb:1, width:{xs:0.91, sm:0.56}}}>
+          <SelectSkill />
+        </Box>
+        <Box sx={{mb:1, width:{xs:0.9, sm:0.40}, position:'relative'}}>
             <Typography sx={{verticalAlign:'bottom', mb:'10px', mx:'8px', display:'inline-block'}}>Target DEF:</Typography>
-            <TextField name='targetDEF' value={targetDEF.def} onChange={e=>setTargetDEF(prev=>({...prev, def:e.target.value}))} type='number' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{min:0, step:50}}/>
+            <TextField name='targetDEF' value={targetDEF.def} onChange={e=>setTargetDEF(prev=>({...prev, def:e.target.value}))} type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:'70%', sm:120}}} inputProps={{min:0, step:50}}/>
             <Box sx={{position:'absolute', top:45, right:25}}>
               <HPnDEFCal/>
             </Box>
-          </Grid>
-        </Grid>
+        </Box>
       </Box>
 
-      {/* <Box sx={{ width: '530px', border: '1px solid white'}} > */}
-      <Box sx={{ width: '550px', mb:2}} >
-        <Typography sx={{fontSize:18, fontWeight:500, mb:2}}>Skill Multiplier</Typography>
-        <Grid container spacing={1} >
-          <Grid xs={4}>
+      <Box sx={{ mb:1}} >
+        <Typography sx={{fontSize:18, fontWeight:500, mb:1}}>Skill Multiplier</Typography>
+        <Box sx={flexContainer} >
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>ATK:</Typography>
-            <TextField name='atk' value={skillMltplr.atk} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{min:0}}/>
-          </Grid>
-          <Grid xs={4}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>HP:</Typography>
-            <TextField name='hp' value={skillMltplr.hp} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled" hiddenLabel size='small' inputProps={{step:0.1, min:0}} sx={mltplrStyle}/>
-          </Grid>
-          <Grid xs={4}>
+            <TextField name='atk' value={skillMltplr.atk} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
+            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>&nbsp; HP:</Typography>
+            <TextField name='hp' value={skillMltplr.hp} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{step:0.1, min:0}}/>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>DEF:</Typography>
-            <TextField name='def' value={skillMltplr.def} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{min:0}}/>
-          </Grid>
-          <Grid xs={7}>
+            <TextField name='def' value={skillMltplr.def} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          </Box>
+        </Box>
+        
+        <Box sx={flexContainer}>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.6}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>SPD:</Typography>
-            <TextField name='spd1' value={skillMltplr.spd1} onChange={onSetSkillMltplr} type='number' placeholder='+' variant="filled"  hiddenLabel size='small' sx={[mltplrStyle, {mr:1}]} inputProps={{min:0}}/>
-            <TextField name='spd2' value={skillMltplr.spd2} onChange={onSetSkillMltplr} type='number' placeholder='/' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{min:0}}/>
-          </Grid>
-          <Grid xs={5} sx={{textAlign:'right'}}>
+            <TextField name='spd1' value={skillMltplr.spd1} onChange={onSetSkillMltplr} type='number' placeholder='+' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}, mr:1}} inputProps={{min:0}}/>
+            <TextField name='spd2' value={skillMltplr.spd2} onChange={onSetSkillMltplr} type='number' placeholder='/' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}}} inputProps={{min:0}}/>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.4}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Skillups:</Typography>
-            <TextField name='skUpDmg' value={skillMltplr.skUpDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{step:5, min:0}}/>
-          </Grid>
-          <Grid xs={5}>
+            <TextField name='skUpDmg' value={skillMltplr.skUpDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{step:5, min:0}}/>
+          </Box>
+        </Box>
+
+        <Box sx={flexContainer}>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.65}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Hits:</Typography>
-            <TextField name='hits' value={skillMltplr.hits} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={mltplrStyle} inputProps={{min:0}}/>
-          </Grid>
-          <Grid xs={7} sx={{textAlign:'right'}}>
+            <TextField name='hits' value={skillMltplr.hits} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.65}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Special Dmg:</Typography>
-            <TextField name='speDmg' value={skillMltplr.speDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={[mltplrStyle]} inputProps={{min:0}}/>
+            <TextField name='speDmg' value={skillMltplr.speDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.5, sm:120}}} inputProps={{min:0}}/>
             <Tooltip arrow placement='top-end' title={<Typography fontWeight={300} fontSize={14}>Special damage value, e.g., Mo Long S3 deal 70% max HP, if target max HP is 30000, enter 21000<br/>Demon S1 -- 10% current HP,<br/>
               Demon S2, if your other 3 allies current HP are 25K so 10%x3 = 7500, enter 7500</Typography>}>
               <InfoOutlinedIcon fontSize='small' sx={{verticalAlign:'bottom', mb:'10px', mx:1}}/>
             </Tooltip>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
       <hr/>
-      {/* <Box sx={{border:'1px solid white'}}> */}
+
       <Box sx={{mb:1}}>
         <Typography sx={{display:'inline'}}>Artifact & Passive damage increase / decrease </Typography>
-          <Tooltip arrow placement='top' title={<Typography fontWeight={300} fontSize={14}>Damage increase -- Dmg dealt on X element, Bomb, Co-op, passive skills<br/>
+        <Tooltip arrow placement='top' title={<Typography fontWeight={300} fontSize={14}>Damage increase -- Dmg dealt on X element, Bomb, Co-op, passive skills<br/>
           e.g., Momo max stack (+200%) with artifact damage dealt on wind +13% = 213%, enter 213
           <br/><br/>Damage decrease -- target equiped with decrease damage from element artifact, passive skills decrease damage<br/>
-          e.g., target equiped with -16% elemental artifact with Camila passive -20%, sum up to -36%, enter 36<br/>
-
-        </Typography>}>
+          e.g., target equiped with -16% elemental artifact with Camila passive -20%, sum up to -36%, enter 36<br/></Typography>}>
           <InfoOutlinedIcon fontSize='small' sx={{verticalAlign:'bottom', mb:'3px'}}/>
         </Tooltip>
-        <Grid container spacing={0} >
-          <Grid xs={5}>
+
+        <Box sx={flexContainer}>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.42}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Dmg +</Typography>
-            <TextField name='plus' value={lastMltplr.plus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={mltplrStyle}/>
+            <TextField name='plus' value={lastMltplr.plus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}}/>
             <Typography component='span' sx={{verticalAlign:'bottom', fontSize:'20px', mb:'5px', ml:'5px', display:'inline-block'}}> %</Typography>
-          </Grid>
-          <Grid xs={7}>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.55}}}>
             <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Target Dmg decrease -</Typography>
-            <TextField name='minus' value={lastMltplr.minus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={mltplrStyle}/>
+            <TextField name='minus' value={lastMltplr.minus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}}}/>
             <Typography component='span' sx={{verticalAlign:'bottom', fontSize:'20px', mb:'5px', ml:'5px', display:'inline-block'}}> %</Typography>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
       <hr/>
-      {/* <Box sx={{ width: '600px', border: '1px solid white'}}> */}
-      <Box sx={{mb:1}}>
+
+      <Box sx={{}}>
         <Typography sx={{fontSize:21, fontWeight:500, color:'red'}}>Arena</Typography>
-        <Grid container spacing={1}>
-          <Grid xs={6}>
+        <Box sx={flexContainer}>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.5}}}>
           <Typography component='span' sx={sx_ResultText}>Normal: </Typography>
           <Typography component='span' sx={sx_ResultNumber}>{Number(damage.arena).toLocaleString()} </Typography>
           <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.arenaFluc}</Typography>
-          </Grid>
-          <Grid xs={6}>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.9, sm:0.5}}}>
             <Typography component='span' sx={sx_ResultText}>Crit: </Typography>
             <Typography component='span' sx={sx_ResultNumber}>{Number(damage.arenaCrit).toLocaleString()} </Typography>
             <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.arenaCritFluc}</Typography>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
 
-      {/* <Box sx={{ width: '600px', border: '1px solid white'}}> */}
-      <Box sx={{mb:1}}>
+      <Box sx={{}}>
         <Typography sx={{fontSize:21, fontWeight:500, color:'red'}}>Guild</Typography>
-        <Grid container spacing={1}>
-          <Grid xs={6}>
+        <Box sx={flexContainer}>
+          <Box sx={{mb:1, width:{xs:0.6, sm:0.5}}}>
           <Typography component='span' sx={sx_ResultText}>Normal: </Typography>
           <Typography component='span' sx={sx_ResultNumber}>{Number(damage.guild).toLocaleString()} </Typography>
           <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.guildFluc}</Typography>
-          </Grid>
-          <Grid xs={6}>
+          </Box>
+          <Box sx={{mb:1, width:{xs:0.6, sm:0.5}}}>
             <Typography component='span' sx={sx_ResultText}>Crit: </Typography>
             <Typography component='span' sx={sx_ResultNumber}>{Number(damage.guildCrit).toLocaleString()} </Typography>
             <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.guildCritFluc}</Typography>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
       <hr/>
-    </>
+    </Box>
   )
 }
