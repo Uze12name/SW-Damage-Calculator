@@ -121,7 +121,7 @@ function App() {
             <Box component='footer' sx={{py:2, bgcolor:'grey.900'}}>
               <Container maxWidth='sm'>
                 <Typography fontSize='12px' >
-                  Monsters data and pictures come from swarfarm.com
+                  Monster resouces come from swarfarm.com
                 </Typography>
               </Container>
             </Box>

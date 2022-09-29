@@ -4,7 +4,6 @@ import Tooltip from '@mui/material/Tooltip';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SelectSkill from './SelectSkill'
@@ -15,13 +14,14 @@ const flexContainer = {
   flexDirection: {xs:'column', sm:'row'},
   // mb:1,
 }
-const mltplrStyle = {
-  marginBottom:'2px',
-  width:'120px',
+const sx_TextField = {
+  width: {xs:1, sm:120},
+  pr: 1,
 }
-const mltplrStyle2 = {
-  marginBottom:'2px',
-  width:'80%',
+const sx_Label = {
+  alignSelf:'center',
+  textAlign:'end',
+  pr:1,
 }
 const sx_ResultText = {
   fontSize:18,
@@ -194,11 +194,11 @@ export default function Damage () {
     let arenaFluc = '', arenaCritFluc = ''
     let guildFluc = '', guildCritFluc = ''
     if(dmgType !== 'fixed') { //-- Fixed damage always be the same value (non fluctuate) --//
-        arenaFluc = `( ${Number(Math.floor(arena*0.97)).toLocaleString()} - ${Number(Math.floor(arena*1.03)).toLocaleString()} )`
-        guildFluc = `( ${Number(Math.floor(guild*0.97)).toLocaleString()} - ${Number(Math.floor(guild*1.03)).toLocaleString()} )`
+        arenaFluc = `(${Number(Math.floor(arena*0.97)).toLocaleString()} - ${Number(Math.floor(arena*1.03)).toLocaleString()})`
+        guildFluc = `(${Number(Math.floor(guild*0.97)).toLocaleString()} - ${Number(Math.floor(guild*1.03)).toLocaleString()})`
         if(dmgType !== 'bomb') {  //-- Bomb & fixed damage can't crit --//
-          arenaCritFluc = `( ${Number(Math.floor(arenaCrit*0.97)).toLocaleString()} - ${Number(Math.floor(arenaCrit*1.03)).toLocaleString()} )`
-          guildCritFluc = `( ${Number(Math.floor(guildCrit*0.97)).toLocaleString()} - ${Number(Math.floor(guildCrit*1.03)).toLocaleString()} )`
+          arenaCritFluc = `(${Number(Math.floor(arenaCrit*0.97)).toLocaleString()} - ${Number(Math.floor(arenaCrit*1.03)).toLocaleString()})`
+          guildCritFluc = `(${Number(Math.floor(guildCrit*0.97)).toLocaleString()} - ${Number(Math.floor(guildCrit*1.03)).toLocaleString()})`
         }
     }
     setDamage({arena, arenaCrit, guild, guildCrit, arenaFluc, arenaCritFluc, guildFluc, guildCritFluc})
@@ -208,58 +208,62 @@ export default function Damage () {
   return (
     <Box>
       <Box sx={[flexContainer, {mb:1}]} >
-        <Box sx={{mb:1, width:{xs:0.91, sm:0.56}}}>
+        {/* <Box sx={{mb:1, width:{xs:0.91, sm:0.56}}}> */}
           <SelectSkill />
-        </Box>
-        <Box sx={{mb:1, width:{xs:0.9, sm:0.40}, position:'relative'}}>
-            <Typography sx={{verticalAlign:'bottom', mb:'10px', mx:'8px', display:'inline-block'}}>Target DEF:</Typography>
-            <TextField name='targetDEF' value={targetDEF.def} onChange={e=>setTargetDEF(prev=>({...prev, def:e.target.value}))} type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:'70%', sm:120}}} inputProps={{min:0, step:50}}/>
-            <Box sx={{position:'absolute', top:45, right:25}}>
+        {/* </Box> */}
+        <Box sx={{display:'flex', width:{xs:1, sm:0.40}, mb:1}}>
+          <Typography sx={[{width:130}, sx_Label]}>Target DEF:</Typography>
+          <Box sx={{position:'relative', width:{xs:1, sm:120}}}>
+            <TextField name='targetDEF' value={targetDEF.def} onChange={e=>setTargetDEF(prev=>({...prev, def:e.target.value}))} type='number' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{min:0, step:50}}/>
+            <Box sx={{position:'absolute', top:40, right:10}}>
               <HPnDEFCal/>
             </Box>
+          </Box>
         </Box>
       </Box>
 
-      <Box sx={{ mb:1}} >
+      <Box sx={{mb:1}} >
         <Typography sx={{fontSize:18, fontWeight:500, mb:1}}>Skill Multiplier</Typography>
         <Box sx={flexContainer} >
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>ATK:</Typography>
-            <TextField name='atk' value={skillMltplr.atk} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          {/* <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}> */}
+          <Box sx={{display:'flex', width:{xs:1, sm:0.33}, mb:1}}>
+            <Typography sx={[{width:50}, sx_Label]}>ATK:</Typography>
+            <TextField name='atk' value={skillMltplr.atk} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{min:0}}/>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>&nbsp; HP:</Typography>
-            <TextField name='hp' value={skillMltplr.hp} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{step:0.1, min:0}}/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.33}, mb:1}}>
+            <Typography sx={[{width:50}, sx_Label]}>&nbsp; HP:</Typography>
+            <TextField name='hp' value={skillMltplr.hp} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled" hiddenLabel size='small' sx={sx_TextField} inputProps={{step:0.1, min:0}}/>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.32}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>DEF:</Typography>
-            <TextField name='def' value={skillMltplr.def} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.33}, mb:1}}>
+            <Typography sx={[{width:50}, sx_Label]}>DEF:</Typography>
+            <TextField name='def' value={skillMltplr.def} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{min:0}}/>
           </Box>
         </Box>
         
         <Box sx={flexContainer}>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.6}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>SPD:</Typography>
-            <TextField name='spd1' value={skillMltplr.spd1} onChange={onSetSkillMltplr} type='number' placeholder='+' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}, mr:1}} inputProps={{min:0}}/>
-            <TextField name='spd2' value={skillMltplr.spd2} onChange={onSetSkillMltplr} type='number' placeholder='/' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}}} inputProps={{min:0}}/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.6}, mb:1}}>
+            <Typography sx={[{width:50}, sx_Label]}>SPD:</Typography>
+            <TextField name='spd1' value={skillMltplr.spd1} onChange={onSetSkillMltplr} type='number' placeholder='+' variant="filled"  hiddenLabel size='small' sx={{width:{xs:0.5, sm:120}, mr:1}} inputProps={{min:0}}/>
+            <TextField name='spd2' value={skillMltplr.spd2} onChange={onSetSkillMltplr} type='number' placeholder='/' variant="filled"  hiddenLabel size='small' sx={{width:{xs:0.5, sm:120}, pr:1}} inputProps={{min:0}}/>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.4}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Skillups:</Typography>
-            <TextField name='skUpDmg' value={skillMltplr.skUpDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{step:5, min:0}}/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.4}, mb:1}}>
+            <Typography sx={[{width:88}, sx_Label]}>Skillups:</Typography>
+            <TextField name='skUpDmg' value={skillMltplr.skUpDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{step:5, min:0}}/>
           </Box>
         </Box>
 
         <Box sx={flexContainer}>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.65}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Hits:</Typography>
-            <TextField name='hits' value={skillMltplr.hits} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}} inputProps={{min:0}}/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.42}, mb:1}}>
+            <Typography sx={[{width:50}, sx_Label]}>Hits:</Typography>
+            <TextField name='hits' value={skillMltplr.hits} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{min:0}}/>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.65}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Special Dmg:</Typography>
-            <TextField name='speDmg' value={skillMltplr.speDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.5, sm:120}}} inputProps={{min:0}}/>
-            <Tooltip arrow placement='top-end' title={<Typography fontWeight={300} fontSize={14}>Special damage value, e.g., Mo Long S3 deal 70% max HP, if target max HP is 30000, enter 21000<br/>Demon S1 -- 10% current HP,<br/>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.58}, mb:1}}>
+            <Typography sx={[{width:165}, sx_Label]}>Special Dmg:</Typography>
+            <TextField name='speDmg' value={skillMltplr.speDmg} onChange={onSetSkillMltplr} type='number' placeholder='0' variant="filled"  hiddenLabel size='small' sx={sx_TextField} inputProps={{min:0}}/>
+            <Tooltip  arrow placement='top-end' title={<Typography fontWeight={300} fontSize={14}>Special damage value, e.g., Mo Long S3 deal 70% max HP, if target max HP is 30000, enter 21000<br/>Demon S1 -- 10% current HP,<br/>
               Demon S2, if your other 3 allies current HP are 25K so 10%x3 = 7500, enter 7500</Typography>}>
-              <InfoOutlinedIcon fontSize='small' sx={{verticalAlign:'bottom', mb:'10px', mx:1}}/>
+              {/* <InfoOutlinedIcon fontSize='small' sx={{verticalAlign:'bottom', mb:'10px', mx:1}}/> */}
+              <InfoOutlinedIcon sx={{alignSelf:'center', pr:1, fontSize:28}}/>
             </Tooltip>
           </Box>
         </Box>
@@ -275,16 +279,16 @@ export default function Damage () {
           <InfoOutlinedIcon fontSize='small' sx={{verticalAlign:'bottom', mb:'3px'}}/>
         </Tooltip>
 
-        <Box sx={flexContainer}>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.42}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Dmg +</Typography>
-            <TextField name='plus' value={lastMltplr.plus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.7, sm:120}}}/>
-            <Typography component='span' sx={{verticalAlign:'bottom', fontSize:'20px', mb:'5px', ml:'5px', display:'inline-block'}}> %</Typography>
+        <Box sx={flexContainer}>  
+          <Box sx={{display:'flex', width:{xs:1, sm:0.42}, mb:1}}>
+            <Typography sx={[{width:80}, sx_Label]}>Dmg +</Typography>
+            <TextField name='plus' value={lastMltplr.plus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={sx_TextField}/>
+            <Typography component='span' sx={[{width:20}, sx_Label]}>%</Typography>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.55}}}>
-            <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'10px', mx:'8px', display:'inline-block'}}>Target Dmg decrease -</Typography>
-            <TextField name='minus' value={lastMltplr.minus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={{mb:'2px', width:{xs:0.4, sm:120}}}/>
-            <Typography component='span' sx={{verticalAlign:'bottom', fontSize:'20px', mb:'5px', ml:'5px', display:'inline-block'}}> %</Typography>
+          <Box sx={{display:'flex', width:{xs:1, sm:0.55}, mb:1}}>
+            <Typography sx={{width:{xs:150, sm:180}, alignSelf:'center', textAlign:'center'}}>Target Dmg decrease -</Typography>
+            <TextField name='minus' value={lastMltplr.minus} onChange={onLastMltplrChange} placeholder='0' type='number' variant="filled"  hiddenLabel size='small' sx={sx_TextField}/>
+            <Typography component='span' sx={[{width:20}, sx_Label]}>%</Typography>
           </Box>
         </Box>
       </Box>
@@ -293,13 +297,13 @@ export default function Damage () {
       <Box sx={{}}>
         <Typography sx={{fontSize:21, fontWeight:500, color:'red'}}>Arena</Typography>
         <Box sx={flexContainer}>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.5}}}>
-          <Typography component='span' sx={sx_ResultText}>Normal: </Typography>
+          <Box sx={{mb:1, width:{xs:1, sm:0.52}}}>
+          <Typography component='span' sx={sx_ResultText}>Normal:</Typography>
           <Typography component='span' sx={sx_ResultNumber}>{Number(damage.arena).toLocaleString()} </Typography>
           <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.arenaFluc}</Typography>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.9, sm:0.5}}}>
-            <Typography component='span' sx={sx_ResultText}>Crit: </Typography>
+          <Box sx={{mb:1, width:{xs:1, sm:0.48}}}>
+            <Typography component='span' sx={sx_ResultText}>Crit:</Typography>
             <Typography component='span' sx={sx_ResultNumber}>{Number(damage.arenaCrit).toLocaleString()} </Typography>
             <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.arenaCritFluc}</Typography>
           </Box>
@@ -309,13 +313,13 @@ export default function Damage () {
       <Box sx={{}}>
         <Typography sx={{fontSize:21, fontWeight:500, color:'red'}}>Guild</Typography>
         <Box sx={flexContainer}>
-          <Box sx={{mb:1, width:{xs:0.6, sm:0.5}}}>
-          <Typography component='span' sx={sx_ResultText}>Normal: </Typography>
+          <Box sx={{mb:1, width:{xs:1, sm:0.52}}}>
+          <Typography component='span' sx={sx_ResultText}>Normal:</Typography>
           <Typography component='span' sx={sx_ResultNumber}>{Number(damage.guild).toLocaleString()} </Typography>
           <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.guildFluc}</Typography>
           </Box>
-          <Box sx={{mb:1, width:{xs:0.6, sm:0.5}}}>
-            <Typography component='span' sx={sx_ResultText}>Crit: </Typography>
+          <Box sx={{mb:1, width:{xs:1, sm:0.48}}}>
+            <Typography component='span' sx={sx_ResultText}>Crit:</Typography>
             <Typography component='span' sx={sx_ResultNumber}>{Number(damage.guildCrit).toLocaleString()} </Typography>
             <Typography component='span' sx={[sx_ResultNumber, {fontWeight:200}]}>{damage.guildCritFluc}</Typography>
           </Box>

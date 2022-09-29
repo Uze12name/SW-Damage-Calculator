@@ -24,9 +24,9 @@ function SelectSkill () {
   }, [skills])
 
   return (
-    <Box>
-      <Typography sx={{verticalAlign:'bottom', fontSize:'16px', mb:'9px', mx:'8px', display:'inline-block'}}>Skill:</Typography>
-        <FormControl color='primary' sx={{width:0.83}} size='small' variant="filled" hiddenLabel>
+    <Box sx={{display:'flex', mb:1, width:{xs:1, sm:0.56}}} >
+      <Typography sx={{alignSelf:'center', textAlign:'center', px:1}}>Skill:</Typography>
+        <FormControl color='primary' sx={{width:1, pr:1}} size='small' variant="filled" hiddenLabel>
           {/* <InputLabel >Select Skill</InputLabel> */}
           <Select value={selectedSkill} onChange={handleSelectedSkill} defaultValue={99}>
             <MenuItem  value={99}><Typography sx={{color:'grey.400'}}>Select Skill</Typography></MenuItem>
